@@ -14,7 +14,7 @@ module.exports.register=async (req,res,next)=>{
         const user=await User.create({
             email,username,password:hashedPassword,
     })
-        delete user.password;  // why??????
+        delete user.password;
         // console.log(user);
         return res.json({status:true,user});
     }catch(err){  
@@ -31,7 +31,7 @@ module.exports.login=async (req,res,next)=>{
         const isPasswordValid=await bcrypt.compare(password,user.password);
         if(!isPasswordValid)
         return res.json({msg:"Incorrect Username or password",status:false});
-        delete user.password;   // why??????
+        delete user.password;
         return res.json({status:true,user});
     }catch(err){
         next(err);
@@ -47,7 +47,7 @@ module.exports.login=async (req,res,next)=>{
 //         const isPasswordValid=await bcrypt.compare(password,user.password);
 //         if(!isPasswordValid)
 //         return res.json({msg:"Incorrect Username or password",status:false});
-//         delete user.password;   // why??????
+//         delete user.password;
 //         return res.json({status:true,user});
 //     }catch(err){
 //         next(err);
